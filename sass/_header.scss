@@ -1,0 +1,72 @@
+@use './base';
+.header {
+  background-color: base.$color-grey-dark-1;
+  grid-column: full-start/col-end 6;
+  background-image: linear-gradient(
+      rgba(base.$color-secondary, 0.93),
+      rgba(base.$color-secondary, 0.93)
+    ),
+    url('/img/hero.jpeg');
+  background-size: cover;
+  background-position: center;
+  padding: 8rem;
+  padding-top: 4rem;
+
+  display: grid;
+  // grid-template-rows: 1fr min-content 6rem 1fr;
+  grid-template-rows: 1fr min-content minmax(min-content, 6rem) 1fr; //This works on both chrome and firefox
+  // grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr; // This doesn't work on chrome but works on firefox
+  grid-template-columns: minmax(min-content, max-content);
+  row-gap: 1.5rem;
+  justify-content: center;
+
+  @media only screen and (max-width: base.$bp-medium) {
+    grid-column: 1/-1;
+  }
+
+  @media only screen and (max-width: base.$bp-small) {
+    padding: 5rem;
+  }
+
+  &__logo {
+    height: 3rem;
+
+    justify-self: center;
+  }
+
+  &__btn {
+    align-self: start;
+    justify-self: start;
+  }
+
+  &__seenon-text {
+    display: grid;
+    font-size: 1.6rem;
+    color: base.$color-grey-light-2;
+    grid-template-columns: 1fr max-content 1fr;
+    align-items: center;
+    gap: 1.5rem;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 1px;
+      // width: 100px;
+      display: block;
+      background-color: currentColor;
+    }
+  }
+
+  &__seenon-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 3rem;
+    justify-items: center;
+    align-items: center;
+    img {
+      max-height: 2.5rem;
+      max-width: 100%;
+      filter: brightness(70%);
+    }
+  }
+}
